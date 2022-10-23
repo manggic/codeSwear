@@ -5,6 +5,7 @@ import {
   AiOutlinePlusCircle,
   AiOutlineMinusCircle,
 } from "react-icons/ai";
+import { MdAccountCircle } from "react-icons/md";
 import { GrFormClose } from "react-icons/gr";
 const NavBar = ({ addToCart, removeFromCart, total, clearCart, cart }) => {
   const ref = useRef();
@@ -58,11 +59,9 @@ const NavBar = ({ addToCart, removeFromCart, total, clearCart, cart }) => {
         </ul>
       </div>
 
-      <div
-        className="cart absolute mr-3 right-2 text-2xl cursor-pointer"
-        onClick={handleCart}
-      >
-        <AiOutlineShoppingCart />
+      <div className="cart absolute mr-3 right-2 text-2xl cursor-pointer flex">
+       <Link href='/login'><MdAccountCircle className="mr-4 cursor-pointer" /></Link> 
+        <AiOutlineShoppingCart onClick={handleCart} />
       </div>
 
       <div
