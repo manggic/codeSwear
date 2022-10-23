@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-const Product = () => {
+const Product = ({ addToCart }) => {
   const router = useRouter();
   const { slug } = router.query;
 
@@ -30,7 +30,7 @@ const Product = () => {
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
-               CODESWEAR
+                CODESWEAR
               </h2>
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
                 Wear the Code
@@ -174,7 +174,19 @@ const Product = () => {
                 <span className="title-font font-medium text-2xl text-gray-900">
                   $58.00
                 </span>
-                <button className="flex ml-8 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                <button
+                  onClick={() =>
+                    addToCart({
+                      itemCode: "t1",
+                      name: "hitman t-shirt",
+                      price: 300,
+                      qty: 1,
+                      variant: "blue",
+                      size: "XL",
+                    })
+                  }
+                  className="flex ml-8 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+                >
                   Add to cart
                 </button>
                 <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
