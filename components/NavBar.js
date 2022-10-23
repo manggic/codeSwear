@@ -18,7 +18,7 @@ const NavBar = ({ addToCart, removeFromCart, total, clearCart, cart }) => {
     }
   };
   return (
-    <div className="flex flex-col md:flex-row md:justify-start justify-center items-center py-4 bg-slate-50">
+    <div className="flex sticky top-0 z-[10] flex-col md:flex-row md:justify-start justify-center items-center py-4 bg-slate-50">
       <Link href="/">
         <a>
           <div
@@ -59,7 +59,7 @@ const NavBar = ({ addToCart, removeFromCart, total, clearCart, cart }) => {
       </div>
 
       <div
-        className="cart absolute mx-10 right-5 text-2xl cursor-pointer"
+        className="cart absolute mr-3 right-2 text-2xl cursor-pointer"
         onClick={handleCart}
       >
         <AiOutlineShoppingCart />
@@ -67,13 +67,13 @@ const NavBar = ({ addToCart, removeFromCart, total, clearCart, cart }) => {
 
       <div
         ref={ref}
-        className={`absolute top-0 right-0 px-5 py-4 w-80 h-full  z-[100] bg-indigo-100 translate-x-full transform transition-transform `}
+        className={`absolute top-0 right-0 px-5 py-4 w-80 h-[100vh]  z-[100] bg-indigo-100 translate-x-full transform transition-transform `}
       >
         <h1 className="text-center text-xl text-indigo-700 font-bold  ">
           Cart
         </h1>
         <span
-          className="top-2 right-4  text-xl absolute cursor-pointer"
+          className="top-2 right-4 text-xl absolute cursor-pointer"
           onClick={() => handleCart()}
         >
           <GrFormClose />
@@ -120,9 +120,14 @@ const NavBar = ({ addToCart, removeFromCart, total, clearCart, cart }) => {
         {Object.keys(cart)?.length ? (
           <div className="mt-2">
             <div className="flex">
-              <button className="pt-2 mr-2   text-white bg-indigo-600 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-700 rounded">
-                Checkout
-              </button>
+              <Link href={"/checkout"}>
+                <a>
+                  <button className="pt-2 mr-2   text-white bg-indigo-600 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-700 rounded">
+                    Checkout
+                  </button>
+                </a>
+              </Link>
+
               <button
                 onClick={clearCart}
                 className="pt-2 mr-2   text-white bg-red-400 border-0 py-2 px-6 focus:outline-none hover:bg-red-500 rounded"

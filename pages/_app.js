@@ -11,30 +11,31 @@ function MyApp({ Component, pageProps }) {
       if (localStorage.getItem("cart")) {
         setCart(JSON.parse(localStorage.getItem("cart")));
       }
+      calcTotal(JSON.parse(localStorage.getItem("cart")));
 
-      console.log('getCart on load',localStorage.getItem("cart") );
+      console.log("getCart on load", localStorage.getItem("cart"));
     } catch (error) {
       console.log("error =>", error);
     }
   }, []);
 
-  const saveCart = (newCart) => {
-    localStorage.setItem("cart", JSON.stringify(newCart) );
-
-
-    if(!Object.keys(newCart)?.length){
-        subt = 0
-        setTotal(subt);
-        return
-    }
+  const calcTotal = (newCart) => {
     let subt = 0;
-
     let keys = Object.keys(newCart);
     for (let i = 0; i < keys.length; i++) {
       subt += newCart[keys[i]].price * newCart[keys[i]].qty;
     }
 
     setTotal(subt);
+  };
+  const saveCart = (newCart) => {
+    localStorage.setItem("cart", JSON.stringify(newCart));
+
+    if (!Object.keys(newCart)?.length) {
+      setTotal(0);
+      return;
+    }
+    calcTotal(newCart);
   };
 
   const addToCart = (cartObj) => {
@@ -68,8 +69,7 @@ function MyApp({ Component, pageProps }) {
 
     let newCart = cart;
 
-
-    console.log('cart qty', cart[itemCode].qty, typeof cart[itemCode].qty);
+    console.log("cart qty", cart[itemCode].qty, typeof cart[itemCode].qty);
     if (newCart[itemCode].qty === 1) {
       delete newCart[itemCode];
     } else {
