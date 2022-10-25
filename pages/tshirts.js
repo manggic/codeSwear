@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/router";
-const Tshirts = () => {
+const Tshirts = ({ data }) => {
   const router = useRouter();
 
   const handleTshirt = (e) => {
@@ -14,7 +14,7 @@ const Tshirts = () => {
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap -m-4">
-            {[...Array(16).keys()].map((item) => {
+            {data.map((item) => {
               return (
                 <div
                   key={item}
@@ -34,9 +34,9 @@ const Tshirts = () => {
                       TSHIRT
                     </h3>
                     <h2 className="text-gray-900 title-font text-lg font-medium">
-                      The Catalyzer
+                      {item.desc}
                     </h2>
-                    <p className="mt-1">$16.00</p>
+                    <p className="mt-1">Rs {item.price}</p>
                   </div>
                 </div>
               );
@@ -47,5 +47,14 @@ const Tshirts = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(context) {
+  let data = await fetch("http:localhost:3000/api/getproducts");
+  data = await data.json();
+
+  return {
+    props: { data: data.data }, // will be passed to the page component as props
+  };
+}
 
 export default Tshirts;
