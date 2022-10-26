@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-const Product = ({ addToCart }) => {
+const Product = ({ addToCart, data }) => {
   const router = useRouter();
   const { slug } = router.query;
 
@@ -26,14 +26,14 @@ const Product = ({ addToCart }) => {
             <img
               alt="ecommerce"
               className="lg:w-1/2 w-full px-6 h-96  rounded"
-              src="https://m.media-amazon.com/images/I/61r0PYFOONL._UX679_.jpg"
+              src={data.img}
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
                 CODESWEAR
               </h2>
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                Wear the Code
+               {data.title}
               </h1>
               <div className="flex mb-4">
                 <span className="flex items-center">
@@ -134,9 +134,7 @@ const Product = ({ addToCart }) => {
                 </span>
               </div>
               <p className="leading-relaxed">
-                Fam locavore kickstarter distillery. Mixtape chillwave tumeric
-                sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo
-                juiceramps cornhole raw denim forage brooklyn. Everyday carry +1
+                {data.desc}
               </p>
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                 <div className="flex">
@@ -172,7 +170,7 @@ const Product = ({ addToCart }) => {
               </div>
               <div className="flex">
                 <span className="title-font font-medium text-2xl text-gray-900">
-                  $58.00
+                  Rs {data.price}
                 </span>
                 <button
                   onClick={() =>
@@ -237,4 +235,25 @@ const Product = ({ addToCart }) => {
   );
 };
 
+
+
+
+
+export async function getServerSideProps(context) {
+
+  let { slug} = context.query
+  let data = await fetch(`http:localhost:3000/api/getproduct?slug=${slug}`);
+  data = await data.json();
+
+
+  return {
+    props: { data: data.data }, // will be passed to the page component as props
+  };
+}
+
+
+
+
 export default Product;
+
+

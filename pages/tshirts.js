@@ -4,9 +4,9 @@ import { useRouter } from "next/router";
 const Tshirts = ({ data }) => {
   const router = useRouter();
 
-  const handleTshirt = (e) => {
+  const handleTshirt = (e, slug) => {
     e.preventDefault();
-    router.push("/product/wear-the-code");
+    router.push(`/product/${slug}`);
   };
 
   return (
@@ -19,14 +19,14 @@ const Tshirts = ({ data }) => {
                 <div
                   key={item}
                   style={{ cursor: "pointer" }}
-                  onClick={handleTshirt}
+                  onClick={(e) => handleTshirt(e, item.slug)}
                   className="lg:w-1/4 md:w-1/2 p-4 w-full"
                 >
                   <a className="block relative rounded overflow-hidden">
                     <img
                       alt="ecommerce"
                       className="m-auto h-[30vh]"
-                      src="https://m.media-amazon.com/images/I/61r0PYFOONL._UX679_.jpg"
+                      src={item.img}
                     />
                   </a>
                   <div className="mt-4 text-center">
