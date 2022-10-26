@@ -7,7 +7,7 @@ import {
 } from "react-icons/ai";
 import { MdAccountCircle } from "react-icons/md";
 import { GrFormClose } from "react-icons/gr";
-const NavBar = ({ addToCart, removeFromCart, total, clearCart, cart }) => {
+const NavBar = ({ addToCart, removeFromCart, total, clearCart, cart, buyNowProduct }) => {
   const ref = useRef();
   const handleCart = () => {
     if (ref.current.classList.contains("translate-x-full")) {
@@ -119,8 +119,8 @@ const NavBar = ({ addToCart, removeFromCart, total, clearCart, cart }) => {
         {Object.keys(cart)?.length ? (
           <div className="mt-2">
             <div className="flex">
-              <Link href={"/checkout"}>
-                <a>
+              <Link  href={"/checkout"}>
+                <a onClick={()=>  buyNowProduct(0)} >
                   <button className="pt-2 mr-2   text-white bg-indigo-600 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-700 rounded">
                     Checkout
                   </button>

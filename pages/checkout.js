@@ -1,6 +1,6 @@
 import React from "react";
 
-const Checkout = ({ total }) => {
+const Checkout = ({ total, singlePayment }) => {
   return (
     <div>
       <div className="font-bold text-xl text-center mx-auto py-2">Checkout</div>
@@ -107,8 +107,8 @@ const Checkout = ({ total }) => {
       </div>
 
       <h1 className="w-1/2 font-semibold py-4 mx-auto">Review cart and Pay</h1>
-      <div className="flex w-1/2 mx-auto items-center">
-        <div className="mr-6">Total Amount : ${total}</div>
+      <div className="mb-4 flex w-1/2 mx-auto items-center">
+        <div className="mr-6">Total Amount : Rs {singlePayment || total}</div>
 
         {total > 0 ? (
           <button class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-md">

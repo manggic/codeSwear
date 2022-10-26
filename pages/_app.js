@@ -5,6 +5,7 @@ import "../styles/globals.css";
 function MyApp({ Component, pageProps }) {
   const [cart, setCart] = useState({});
   const [total, setTotal] = useState(0);
+  const [singlePayment, setSinglePayment] = useState()
 
   useEffect(() => {
     try {
@@ -14,6 +15,13 @@ function MyApp({ Component, pageProps }) {
       calcTotal(JSON.parse(localStorage.getItem("cart")));
     } catch (error) {}
   }, []);
+
+
+  const buyNowProduct = (price) => {
+       setSinglePayment(price)
+  }
+
+
 
   const calcTotal = (newCart) => {
     let subt = 0;
@@ -85,6 +93,8 @@ function MyApp({ Component, pageProps }) {
         total={total}
         clearCart={clearCart}
         cart={cart}
+        buyNowProduct={buyNowProduct}
+        singlePayment={singlePayment}
       />
       <Component
         {...pageProps}
@@ -93,6 +103,8 @@ function MyApp({ Component, pageProps }) {
         total={total}
         clearCart={clearCart}
         cart={cart}
+        buyNowProduct={buyNowProduct}
+        singlePayment={singlePayment}
       />
       <Footer />{" "}
     </>

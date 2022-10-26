@@ -1,7 +1,13 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-const Product = ({ addToCart, data }) => {
+const Product = ({
+  addToCart,
+  data,
+  clearCart,
+  singlePayment,
+  buyNowProduct,
+}) => {
   const router = useRouter();
   const { slug } = router.query;
 
@@ -18,6 +24,13 @@ const Product = ({ addToCart, data }) => {
       setService(false);
     }
   };
+
+  const buyNow = (price) => {
+    // clearCart()
+    buyNowProduct(price)
+    router.push("/checkout");
+    
+  };
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
@@ -33,7 +46,7 @@ const Product = ({ addToCart, data }) => {
                 CODESWEAR
               </h2>
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-               {data.title}
+                {data.title}
               </h1>
               <div className="flex mb-4">
                 {/* <span className="flex items-center">
@@ -133,9 +146,7 @@ const Product = ({ addToCart, data }) => {
                   </a>
                 </span> */}
               </div>
-              <p className="leading-relaxed">
-                {data.desc}
-              </p>
+              <p className="leading-relaxed">{data.desc}</p>
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                 <div className="flex">
                   <span className="mr-3">Color</span>
@@ -173,6 +184,12 @@ const Product = ({ addToCart, data }) => {
                   Rs {data.price}
                 </span>
                 <button
+                  onClick={() => buyNow(data.price)}
+                  className="flex ml-8 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+                >
+                  Buy Now
+                </button>
+                <button
                   onClick={() =>
                     addToCart({
                       itemCode: data.slug,
@@ -180,8 +197,8 @@ const Product = ({ addToCart, data }) => {
                       price: data.price,
                       qty: 1,
                       variant: data.color,
-                      size:data.size,
-                      image:data.img
+                      size: data.size,
+                      image: data.img,
                     })
                   }
                   className="flex ml-8 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
@@ -236,25 +253,14 @@ const Product = ({ addToCart, data }) => {
   );
 };
 
-
-
-
-
 export async function getServerSideProps(context) {
-
-  let { slug} = context.query
+  let { slug } = context.query;
   let data = await fetch(`http:localhost:3000/api/getproduct?slug=${slug}`);
   data = await data.json();
-
 
   return {
     props: { data: data.data }, // will be passed to the page component as props
   };
 }
 
-
-
-
 export default Product;
-
-
