@@ -12,11 +12,7 @@ function MyApp({ Component, pageProps }) {
         setCart(JSON.parse(localStorage.getItem("cart")));
       }
       calcTotal(JSON.parse(localStorage.getItem("cart")));
-
-      console.log("getCart on load", localStorage.getItem("cart"));
-    } catch (error) {
-      console.log("error =>", error);
-    }
+    } catch (error) {}
   }, []);
 
   const calcTotal = (newCart) => {
@@ -39,7 +35,7 @@ function MyApp({ Component, pageProps }) {
   };
 
   const addToCart = (cartObj) => {
-    let { name, size, variant, price, itemCode, qty } = cartObj;
+    let { name, size, variant, price, itemCode, qty, image } = cartObj;
 
     let newCart = cart;
     if (itemCode in newCart) {
@@ -52,6 +48,7 @@ function MyApp({ Component, pageProps }) {
         price,
         itemCode,
         qty: 1,
+        image,
       };
     }
 
@@ -69,7 +66,6 @@ function MyApp({ Component, pageProps }) {
 
     let newCart = cart;
 
-    console.log("cart qty", cart[itemCode].qty, typeof cart[itemCode].qty);
     if (newCart[itemCode].qty === 1) {
       delete newCart[itemCode];
     } else {

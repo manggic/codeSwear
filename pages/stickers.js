@@ -19,7 +19,7 @@ const Sticker = () => {
               key={item}
               style={{ cursor: "pointer" }}
               onClick={handleTshirt}
-              className="lg:w-1/4 md:w-1/2 p-4 w-full"
+              className="shadow-lg mx-4 my-4 p-4 w-64"
             >
               <a className="block relative rounded overflow-hidden">
                 <img

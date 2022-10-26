@@ -1,25 +1,49 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 const Footer = () => {
-
   return (
     <div>
-      <footer className="text-gray-600 body-font">
+      <footer className="text-gray-600 body-font bg-slate-100">
         <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
           <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
             <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-              <span className="text-black font-bold" style={{color: 'blue', fontWeight:'bold'}}>CodeSwear.com</span>
+              <span
+                className="text-black font-bold"
+                style={{ color: "blue", fontWeight: "bold" }}
+              >
+                CodeSwear.com
+              </span>
             </a>
             <p className="mt-2 text-sm text-gray-500">
-              Air plant banjo lyft occupy retro adaptogen indego
+              Shoutout to all the coders out there Wear the code
             </p>
           </div>
           <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
             <div className="lg:w-1/4 md:w-1/2 w-full px-4">
               <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-                CATEGORIES
+                PRODUCT
               </h2>
-              <nav className="list-none mb-10">
+              <nav className="text-sm flex flex-col list-none mb-10">
+                <Link href="/tshirt">
+                  <a className="text-gray-600 hover:text-gray-800">Tshirts</a>
+                </Link>
+                <Link href="/hoodies">
+                  <a className="text-gray-600 hover:text-gray-800">Hoodies</a>
+                </Link>
+                <Link href="/mugs">
+                  <a className="text-gray-600 hover:text-gray-800">Mugs</a>
+                </Link>
+                <Link href="/stickers">
+                  <a className="text-gray-600 hover:text-gray-800">Stickers</a>
+                </Link>
+              </nav>
+            </div>
+            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+              <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
+                ABOUT
+              </h2>
+              <nav className=" text-sm list-none mb-10">
                 <li>
                   <a className="text-gray-600 hover:text-gray-800">
                     First Link
@@ -44,9 +68,9 @@ const Footer = () => {
             </div>
             <div className="lg:w-1/4 md:w-1/2 w-full px-4">
               <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-                CATEGORIES
+                POLICY
               </h2>
-              <nav className="list-none mb-10">
+              <nav className="text-sm list-none mb-10">
                 <li>
                   <a className="text-gray-600 hover:text-gray-800">
                     First Link
@@ -71,55 +95,17 @@ const Footer = () => {
             </div>
             <div className="lg:w-1/4 md:w-1/2 w-full px-4">
               <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-                CATEGORIES
+                SOCIAL
               </h2>
-              <nav className="list-none mb-10">
+              <nav className="text-sm list-none mb-10">
                 <li>
-                  <a className="text-gray-600 hover:text-gray-800">
-                    First Link
-                  </a>
+                  <a className="text-gray-600 hover:text-gray-800">Youtube</a>
                 </li>
                 <li>
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Second Link
-                  </a>
+                  <a className="text-gray-600 hover:text-gray-800">Twitter</a>
                 </li>
                 <li>
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Third Link
-                  </a>
-                </li>
-                <li>
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Fourth Link
-                  </a>
-                </li>
-              </nav>
-            </div>
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-              <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-                CATEGORIES
-              </h2>
-              <nav className="list-none mb-10">
-                <li>
-                  <a className="text-gray-600 hover:text-gray-800">
-                    First Link
-                  </a>
-                </li>
-                <li>
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Second Link
-                  </a>
-                </li>
-                <li>
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Third Link
-                  </a>
-                </li>
-                <li>
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Fourth Link
-                  </a>
+                  <a className="text-gray-600 hover:text-gray-800">Facebook</a>
                 </li>
               </nav>
             </div>
@@ -128,15 +114,7 @@ const Footer = () => {
         <div className="bg-gray-100">
           <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
             <p className="text-gray-500 text-sm text-center sm:text-left">
-              © 2020 Tailblocks —
-              <a
-                href="https://twitter.com/knyttneve"
-                rel="noopener noreferrer"
-                className="text-gray-600 ml-1"
-                target="_blank"
-              >
-                @knyttneve
-              </a>
+              © 2020 Codeswear.com — All Rights Reserved
             </p>
             <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
               <a className="text-gray-500">

@@ -18,6 +18,7 @@ const NavBar = ({ addToCart, removeFromCart, total, clearCart, cart }) => {
       ref.current.classList.add("translate-x-full");
     }
   };
+
   return (
     <div className="flex sticky top-0 z-[10] flex-col md:flex-row md:justify-start justify-center items-center py-4 bg-slate-50">
       <Link href="/">
@@ -31,36 +32,38 @@ const NavBar = ({ addToCart, removeFromCart, total, clearCart, cart }) => {
         </a>
       </Link>
       <div className="nav">
-        <ul className="flex space-x-3 font-bold text-md">
+        <ul className="flex space-x-3 font-bold text-md ">
           <Link href="/tshirts">
             <a>
               {" "}
-              <li>Tshirt</li>
+              <li className="hover:text-indigo-500">Tshirt</li>
             </a>
           </Link>
           <Link href="/hoodies">
             <a>
               {" "}
-              <li>Hoodies</li>
+              <li className="hover:text-indigo-500">Hoodies</li>
             </a>
           </Link>
           <Link href="/stickers">
             <a>
               {" "}
-              <li>Stickers</li>
+              <li className="hover:text-indigo-500">Stickers</li>
             </a>
           </Link>
           <Link href="/mugs">
             <a>
               {" "}
-              <li>Mugs</li>
+              <li className="hover:text-indigo-500">Mugs</li>
             </a>
           </Link>
         </ul>
       </div>
 
       <div className="cart absolute mr-3 right-2 text-2xl cursor-pointer flex">
-       <Link href='/login'><MdAccountCircle className="mr-4 cursor-pointer" /></Link> 
+        <Link href="/login">
+          <MdAccountCircle className="mr-4 cursor-pointer" />
+        </Link>
         <AiOutlineShoppingCart onClick={handleCart} />
       </div>
 
@@ -81,10 +84,7 @@ const NavBar = ({ addToCart, removeFromCart, total, clearCart, cart }) => {
           ? Object.keys(cart).map((item) => {
               return (
                 <div className="flex py-2" key={item}>
-                  <img
-                    className="h-20"
-                    src="https://m.media-amazon.com/images/I/61r0PYFOONL._UX679_.jpg"
-                  />
+                  <img className="h-20" src={cart[item].image} />
                   <div className="text-base ml-4">
                     <p>{cart[item].name} </p>
                     <p className="flex justify-center items-center">
@@ -144,17 +144,6 @@ const NavBar = ({ addToCart, removeFromCart, total, clearCart, cart }) => {
       {/* <div className='absolute right-2'>
         <button>logIn</button>
       </div> */}
-
-      <style jsx global>
-        {`
-          // .showCart {
-          //   visibility: visible;
-          // }
-          // .hideCart {
-          //   visibility: hidden;
-          // }
-        `}
-      </style>
     </div>
   );
 };
